@@ -2,7 +2,7 @@
 # vcd_file_name = 'test_file.vcd'
 vcd_file_name = 'decoder_tb.vcd'
 
-input_ports = ['clk','din [2:0]',]
+input_ports = ['clk','din [2:0]']
 output_ports = ['dout [7:0]']
 
 ports = input_ports + output_ports
@@ -126,7 +126,8 @@ def mul_match_signal_value(s_l, port):
         # temp = temp.remove('')
         # print(S)
         output_sequence[port] += ' ' + str(temp[len(temp) - 1])#########
-#
+pass#
+
 def get_size(string):
     if ':' in string:
         size = int(string[string.index(':')-1]) + 1
@@ -139,6 +140,14 @@ def add_zero(binary, size):
     while(len(binary) <= size):
         binary = '0' + binary
     return binary
+pass
+
+def bin_to_dec(bin):
+    for ele in bin:
+        if ele != '0' and ele !='1':
+            return 'x'
+    temp = int(bin, 2)
+    return str(temp)
 pass
 
 if __name__ == '__main__':
@@ -177,11 +186,24 @@ if __name__ == '__main__':
                     store += ' ' + element
                         # string.insert(0, '0')
                 output_sequence[key] = store + ' '
+
+    for key in output_sequence:
+        value = output_sequence[key].split(' ')
+        # print(value)
+        # value.remove('')
+        # print(value)
+        empty_string = ''
+        for ele in value:
+            if ele != '':
+                empty_string += bin_to_dec(ele) + ' '
+                print(empty_string)
+        output_sequence[key] = ' ' + empty_string
+        print(empty_string)
     # print(output_sequence)
         # output_sequence[key] = store
-
     wf = open('data.dat', 'w')
+
     for key in output_sequence:
         temp = key + output_sequence[key]
-        print (temp)#
+        print(temp)
         wf.write(temp+'\n')
