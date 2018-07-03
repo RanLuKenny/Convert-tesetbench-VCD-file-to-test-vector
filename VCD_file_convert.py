@@ -1,4 +1,7 @@
 #python file for vcd imformation extraction
+import collections
+
+#python file for vcd imformation extraction
 # vcd_file_name = 'test_file.vcd'
 vcd_file_name = 'decoder_tb.vcd'
 
@@ -8,11 +11,15 @@ output_ports = ['dout [7:0]']
 ports = input_ports + output_ports
 
 ports_adjust = []
-port_and_sign = {}
-muil_but_sign = {}
+# port_and_sign = {}
+# muil_but_sign = {}
+#
+# output_sequence = {}
+port_and_sign = collections.OrderedDict()
+muil_but_sign = collections.OrderedDict()
 
-output_sequence = {}
-output_sequence_new = {}
+output_sequence = collections.OrderedDict()
+output_sequence_new = collections.OrderedDict()
 
 def handle_mul_bus(port_name, line):
     if ':' in port_name:
