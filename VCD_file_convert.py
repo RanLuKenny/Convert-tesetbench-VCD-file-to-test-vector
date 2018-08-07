@@ -18,6 +18,10 @@ ports_adjust = []
 port_and_sign = collections.OrderedDict()
 muil_but_sign = collections.OrderedDict()
 
+#input ports_dic && output ports dic
+input_ports_dic = collections.OrderedDict()
+output_ports_dic = collections.OrderedDict()
+
 output_sequence = collections.OrderedDict()
 output_sequence_new = collections.OrderedDict()
 
@@ -47,7 +51,6 @@ def array(strings, mul_ports): #convert the bus or port
             mul_ports.append(temp)
     else:
         mul_ports.append(strings)
-    #print(ports_adjust)
 pass
 
 def get_wavetime(strings): #timeslot
@@ -60,7 +63,6 @@ def get_ports(port_name, line): # match the sign and port
         position = line.index(port_name)
         sign = line[position-2]
         port_and_sign[port_name] = sign
-        #print(port_and_sign)
         return 0
 pass
 
@@ -91,7 +93,6 @@ def detect_signal_value(f):
                     break
                 else:
                     sub_line.append(f[iter])
-            #print(sub_line)
             #for port in ports_adjust:
             for port0 in port_and_sign: ### get the value
                 match_signal_value(sub_line, port0)
